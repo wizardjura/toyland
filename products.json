@@ -1,0 +1,130 @@
+[
+    {
+        "id": 1,
+        "name": "SimSONS Family",
+        "price": "₱899.99",
+        "image": "img/products/toy1.jpg",
+        "description": "A police officer's standard issue equipment.",
+        "category": "Handgun"
+    },
+    {
+        "id": 2,
+        "name": "Puzzle BOX",
+        "price": "₱1299.99",
+        "image": "img/products/toy2.jpg",
+        "description": "This puzzle box can help your kids how to recognize shapes Age 3+",
+        "category": "Handgun"
+    },
+    {
+        "id": 3,
+        "name": "Buzz Lightyear",
+        "price": "₱1,299.95",
+        "image": "img/products/toy3.jpg",
+        "description": "Ideal for a versatile role thanks to its reduced dimensions when compared to the standard sized option.",
+        "category": "Handgun"
+    },
+    {
+        "id": 4,
+        "name": "Jessie",
+        "price": "₱1099.99",
+        "image": "img/products/toy4.jpg",
+        "description": "The Yodeling Girl. Talking action figure",
+        "category": "Action figure"
+    },
+    {
+        "id": 5,
+        "name": "My.Woody",
+        "price": "₱1099.99",
+        "image": "img/products/toy5.jpg",
+        "description": "Talking action figure with holster.",
+        "category": "Handgun"
+    },
+    {
+        "id": 6,
+        "name": "Shrek",
+        "price": "₱565.99",
+        "image": "img/products/toy6.jpg",
+        "description": "Action figure for table display",
+        "category": "Assault Rifle"
+    },
+    {
+        "id": 7,
+        "name": "ToothLess",
+        "price": "₱599.99",
+        "image": "img/products/toy7.jpg",
+        "description": "From the movie How to train your dragon.",
+        "category": "Assault Rifle"
+    },
+    {
+        "id": 8,
+        "name": "ToothLess and Night Fury",
+        "price": "₱899.95",
+        "image": "img/products/toy8.jpg",
+        "description": "2 in 1 HTYD collection black & white",
+        "category": "Assault Rifle"
+    },
+    {
+        "id": 9,
+        "name": "Racing set Thunderbolt",
+        "price": "₱1899.99",
+        "image": "img/products/toy9.jpg",
+        "description": "Complete set of Thunderbolt racing set.",
+        "category": "Assault Rifle"
+    },
+    {
+        "id": 10,
+        "name": "Kiddie Microscope",
+        "price": "₱1899.99",
+        "image": "img/products/toy10.jpg",
+        "description": "Educational microscope toy for future doctor/scientist kiddo.",
+        "category": "Submachine Gun"
+    },
+    {
+        "id": 11,
+        "name": "John Deree HPX Toy Gator",
+        "price": "₱1099.99",
+        "image": "img/products/toy11.jpg",
+        "description": "This fantastic electric utility vehicle runs on a 12V/12Ah/150Wh rechargeable battery. The John Deere HPX Toy Gator is perfect for little adventurers aged 3 and up. It travels on all surfaces, even the most rugged, and can tackle differences in elevation with a slope of up to 17%.",
+        "category": "Handgun"
+    },
+    {
+        "id": 12,
+        "name": "Dancing Cactus",
+        "price": "₱999.99",
+        "image": "img/products/toy12.jpg",
+        "description": "This Dancing cactus doll will dance to your rhythm, repeat your voice, creates a pleasant atmosphere and its appearance will attract your kids' attention.🤩",
+        "category": "Handgun"
+    },
+    {
+        "id": 13,
+        "name": "Mr.Potato head",
+        "price": "₱349.95",
+        "image": "img/products/toy13.jpg",
+        "description": "Potato Head Mr. Potato Head Classic Toy For Kids Ages 2 and Up, Includes 13 Parts and Pieces to Create Funny Faces",
+        "category": "Rifle"
+    },
+    {
+        "id": 14,
+        "name": "Transformer Optimus",
+        "price": "₱1995.99",
+        "image": "img/products/toy14.jpg",
+        "description": "Transformers Toys Studio Series 51 Deluxe Class Dark of The Moon Movie Soundwave Action Figure - Kids Ages 8 & Up, 4.5",
+        "category": "Rifle"
+    },
+    {
+        "id": 15,
+        "name": "Transformer Bumble bee",
+        "price": "₱1999.99",
+        "image": "img/products/toy15.jpg",
+        "description": "Transformers Toys Studio Series 70 Deluxe Transformers: Bumblebee B-127 Action Figure, 8 and Up, 4.5-inch",
+        "category": "Submachine Gun"
+    },
+    {
+        "id": 16,
+        "name": "Blue's clues",
+        "price": "₱3699.99",
+        "image": "img/products/toy16.jpg",
+        "description": "Just Play Blue’s Clues & You! Big Hugs Blue, 16-inch plush, Kids Toys for Ages 3 up",
+        "category": "Rifle"
+    }
+]

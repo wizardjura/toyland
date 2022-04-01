@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/mycss.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>
+        TOY LAND 
+    </title>
+    <link rel="icon" href="img/Logo.png">
+  </head>
+  <body class="white darken-4 sans-serif white-text my-scrollbar overflow">
+ 
+
+    <div id="title-parallax" class="parallax-container yellow darken-4 transition-medium" style="height:560px;margin-top:-10px;">
+      <div class="container valign height-100">
+        <div id="particles-js" style="height:100%;width:100%;position:absolute;"></div>
+        <div class="center">
+          <h3 id="title-text" class="blue-text text-lighten-3 monospace center opacity-0 transition-medium">TOY LAND Co.</h3>
+          <span id="subtitle-text" class="opacity-0 transition-medium">The go-to store for all your gun-loving needs.</span>
+        </div>
+      </div>
+      <div class="parallax">
+        <!-- <img src="img/particles.gif" /> -->
+        <img src="img/Gun3.jpg" />
+      </div>
+    </div>
+  
+    
+    
+    <div class="container">
+      <div class="row">
+        <div class="right">
+          <ul class="pagination listPagination">
+          </ul>
+        </div>
+      </div>
+      <div id="divList" class="row">
+      </div>
+      <div class="row">
+        <div class="right">
+          <ul class="pagination listPagination">
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <footer class="page-footer grey darken-4 drop-shadow">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="grey-text monospace bold text-shadow">Support the Developer.</h5>
+            <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Send us some coffee!', '#29abe0', 'A0A838CB2');kofiwidget2.draw();</script> 
+            <div id="donate-button-container" class="top-margin">
+              <div id="donate-button"></div>
+              <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+              <script>
+              PayPal.Donation.Button({
+              env:'production',
+              hosted_button_id:'Y9FZLHQ4GBCJG',
+              image: {
+              src:'https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif',
+              alt:'Donate with PayPal button',
+              title:'PayPal - The safer, easier way to pay online!',
+              }
+              }).render('#donate-button');
+              </script>
+              </div>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="grey-text monospace bold text-shadow">Links</h5>
+            <ul>
+              <li><a class="blue-text text-darken-3" href="https://discord.io/CoralReef" target=”_blank”>Discord</a></li>
+              <li><a class="deep-purple-text text-darken-1" href="https://github.com/Coralise/EDP-SA1" target=”_blank”>Github Repo</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        © 2022 WG Studios 
+        </div>
+      </div>
+    </footer>
+
+    <div id="productViewer" class="modal grey darken-4 my-scrollbar overflow">
+      <div class="modal-content">
+        <div class="row">
+          <div class="col l6">
+            <img id="modalImg" src="img/products/toy1.jpg" class="width-100 materialboxed">
+            <h5 id="modalName">Name</h5>
+            <p id="modalCategory">Category</p>
+            <p id="modalDesc">Description</p>
+            <p id="modalPrice">₱Price</p>
+            <a id="minusOneBtn" href="#!" class="waves-effect waves-black btn red darken-3 round-corners-left-mid"><i class="material-icons">exposure_minus_1</i></a>
+            <span id="saleCount" class="btn square-corners skyblue darken-3">1</span>
+            <a id="plusOneBtn" href="#!" class="waves-effect waves-black btn green darken-3 round-corners-right-mid"><i class="material-icons">exposure_plus_1</i></a>
+            <a id="addSalesCountBtn" data-product-id="id" href="#!" class="waves-effect waves-black btn orange darken-3 round-corners-low right">Add Sales Count</a>
+          </div>
+          <div class="col l6">
+            <div class="right">
+              <ul id="modalPagination" class="pagination">
+              </ul>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                    <th style="width:33%">ID</th>
+                    <th style="width:33%">Date</th>
+                    <th style="width:33%">Amount</th>
+                </tr>
+              </thead>
+      
+              <tbody id="modalTBody">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <script type="text/javascript" src="data.json"></script> -->
+    <script type="text/javascript" src="particles.js-master/particles.min.js"></script>
+    <script type="text/javascript" src="js/TweenMax.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/localbase/dist/localbase.min.js"></script>
+    <script>
+      var db = new Localbase('db');
+      var data;
+
+      $("#plusOneBtn").on("click", function() {
+        $("#saleCount").text(parseInt($("#saleCount").text())+1);
+        $("#minusOneBtn").removeClass("disabled");
+      });
+
+      $("#minusOneBtn").on("click", function() {
+        $("#saleCount").text(parseInt($("#saleCount").text())-1);
+        if ($("#saleCount").text()==1) $("#minusOneBtn").addClass("disabled");
+      });
+
+      $(".catButton").on("click", function() {
+        populateList($(this).data("category"), 1);
+      });
+
+      $("#resetCollectionsBtn").on("click", function() {
+        db.delete().then(res => {
+          location.reload();
+        });
+      });
+
+      function loadClicks() {
+        $(".viewProduct").on("click", function() {
+          $("#saleCount").text(1);
+          $("#minusOneBtn").addClass("disabled");
+
+          var id = $(this).data("productId");
+
+          $("#addSalesCountBtn").data("productId", id);
+          
+          db.collection("prods").doc({ id: id}).get().then(prod => {
+            $("#modalName").text(prod["name"]);
+            $("#modalPrice").text(prod["price"]);
+            $("#modalDesc").text(prod["description"]);
+            $("#modalCategory").text(prod["category"]);
+            $("#modalImg").attr("src", prod["image"]);
+            loadSales(id, 1);
+          });
+
+        });
+      }
+
+      function loadSales(id, page) {
+        $("#modalTBody").html("");
+        var c = "salesCount-" + id;
+        db.collection(c).get().then(sc => {
+          for (var i = 5*(parseInt(page)-1);i < sc.length && i < 5*parseInt(page);i++) {
+
+            var html = `
+                <tr>
+                  <td>`+ sc[i]["id"] +`</td>
+                  <td>`+ sc[i]["date"] +`</td>
+                  <td>`+ sc[i]["amount"] +`</td>
+                </tr>
+            `;
+
+            $("#modalTBody").append(jQuery.parseHTML(html));
+          }
+          loadModalPagination(id, page);
+        });
+      }
+
+      function addSalesCount(id, amount) {
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + ' ' + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        db.collection("salesCount-" + id).get().then(sc => {
+          var scId = sc.length+1;
+          db.collection("salesCount-" + id).add({
+            id: scId,
+            date: date,
+            amount: amount
+          }).then(res => {
+            loadSales(id, Math.ceil((sc.length+1)/5));
+            M.toast({html: 'Sales have been added.'});
+          });
+        });
+      }
+
+      $("#addSalesCountBtn").on("click", function() {addSalesCount($(this).data("productId"), $("#saleCount").text())});
+      
+      // <div class="card sticky-action grey darken-3 hoverable tooltipped" data-position="top" data-tooltip="Click for more info">
+      //   <div class="card-image waves-effect waves-block waves-light">
+      //     <img class="activator" src="img/products/beretta92.jpg">
+      //   </div>
+      //   <div class="card-content activator">
+      //     <p class="activator">Name</p>
+      //     <p class="activator">₱Price</p>
+      //   </div>
+      //   <div class="card-reveal grey darken-3">
+      //     <span class="card-title orange-text text-darken-3">Name<i class="material-icons right white-text">close</i></span>
+      //     <p>Description</p>
+      //     <p>₱Price</p>
+      //   </div>
+      //   <div class="card-action">
+      //     <a class="btn-small round-corners-mid orange darken-3 waves-effect waves-black viewProduct modal-trigger" href="#productViewer" data-product-id="id"><i class="material-icons left ">add_shopping_cart</i>Buy Now</a>
+      //   </div>
+      // </div>
+
+      var gCat;
+      function populateList(category, page) {
+        gCat = category;
+        $("#divList").html("");
+        db.collection("prods").get().then(prods => {
+          var rows = [];
+          for (var i = 16*(page-1),j = 0;i < prods.length && i-j < 16*page;i++) {
+
+            if (category != "all" && prods[i]["category"] != category) {
+              j++;
+              continue;
+            }
+
+            if ((i-j)%4 == 0) {
+              rows.push($("<div></div>").addClass("row"));
+            }
+
+            rows[rows.length-1].append(productCard(prods[i]));
+
+          }
+
+          for (var i = 0;i < rows.length;i++) $("#divList").append(rows[i]);
+            
+          loadPagination(page);
+
+          var elems = document.querySelectorAll('.tooltipped');
+          var instances = M.Tooltip.init(elems);
+          loadClicks();
+        });
+      }
+
+      $(document).on("scroll", function() {
+            if (checkVisible($("#randDiv")) && $("#randDiv").hasClass("opacity-0")) {
+              $("#randDiv").removeClass("opacity-0");
+              $("#randDiv").css("margin-left", "25%");
+            }
+      });
+
+      function checkVisible( elm, evalType ) {
+        evalType = evalType || "visible";
+
+        var vpH = $(window).height(), // Viewport Height
+            st = $(window).scrollTop(), // Scroll Top
+            y = $(elm).offset().top,
+            elementHeight = $(elm).height();
+
+        if (evalType === "visible") return ((y < (vpH + st - vpH*.30)) && (y > (st - elementHeight + st*.30)));
+        if (evalType === "above") return ((y < (vpH + st)));
+      }
+
+      function loadPagination(page) {
+        $(".listPagination").html("");
+        db.collection("prods").get().then(prods => {
+          if (gCat != "all") prods = prods.filter(p=>p["category"] == gCat);
+          var html = '<li class="'+ (page==1 ? "disabled" : "waves-effect") +' updatePage" data-updated-page="'+ (parseInt(page)-1) +'"><a href="#!"><i class="material-icons">chevron_left</i></a></li>';
+            if (Math.ceil(prods.length/16) <= 8) {
+              for (var i = 1;i <= Math.ceil(prods.length/16);i++) {
+                html = html + '<li class="updatePage '+ (i == page ? "active orange darken-3" : "waves-effect") +'" data-updated-page="'+ i +'"><a href="#!">'+ i +'</a></li>';
+              }
+            } else {
+                html = html + '<li class="updatePage '+ (1 == page ? "active orange darken-3" : "waves-effect") +'" data-updated-page="1"><a href="#!">1</a></li>';
+                html = html + '<li><a href="#!">...</a></li>';
+                if (![1,Math.ceil(prods.length/16)].includes(page)) {
+                  html = html + '<li class="updatePage active orange darken-3" data-updated-page="'+ page +'"><a href="#!">'+ page +'</a></li>';
+                  html = html + '<li><a href="#!">...</a></li>';
+                }
+                html = html + '<li class="updatePage '+ (Math.ceil(prods.length/16) == page ? "active orange darken-3" : "waves-effect") +'" data-updated-page="'+ Math.ceil(sc.length/16) +'"><a href="#!">'+ Math.ceil(sc.length/16) +'</a></li>';
+            }
+          html = html + '<li class="updatePage '+ (Math.ceil(prods.length/16)==page ? "disabled" : "waves-effect") +'" data-updated-page="'+ (parseInt(page)+1) +'"><a href="#!"><i class="material-icons">chevron_right</i></a></li>';
+
+          $(".listPagination").append(jQuery.parseHTML(html));
+          loadPageClicks();
+        });
+      }
+
+      function loadModalPagination(prodId, page) {
+        $("#modalPagination").html("");
+        db.collection("salesCount-" + prodId).get().then(sc => {
+            var html = '<li class="'+ (page==1 ? "disabled" : "waves-effect") +' updateSales" data-updated-page="'+ (parseInt(page)-1) +'"><a href="#!"><i class="material-icons">chevron_left</i></a></li>';
+            if (Math.ceil(sc.length/5) <= 8) {
+              for (var i = 1;i <= Math.ceil(sc.length/5);i++) {
+                html = html + '<li class="updateSales '+ (i == page ? "active orange darken-3" : "waves-effect") +'" data-updated-page="'+ i +'"><a href="#!">'+ i +'</a></li>';
+              }
+            } else {
+                html = html + '<li class="updateSales '+ (1 == page ? "active orange darken-3" : "waves-effect") +'" data-updated-page="1"><a href="#!">1</a></li>';
+                html = html + '<li><a href="#!">...</a></li>';
+                if (![1,Math.ceil(sc.length/5)].includes(page)) {
+                  html = html + '<li class="updateSales active orange darken-3" data-updated-page="'+ page +'"><a href="#!">'+ page +'</a></li>';
+                  html = html + '<li><a href="#!">...</a></li>';
+                }
+                html = html + '<li class="updateSales '+ (Math.ceil(sc.length/5) == page ? "active orange darken-3" : "waves-effect") +'" data-updated-page="'+ Math.ceil(sc.length/5) +'"><a href="#!">'+ Math.ceil(sc.length/5) +'</a></li>';
+            }
+          html = html + '<li class="updateSales '+ (Math.ceil(sc.length/5)==page || Math.ceil(sc.length/5)==1 ? "disabled" : "waves-effect") +'" data-updated-page="'+ (parseInt(page)+1) +'"><a href="#!"><i class="material-icons">chevron_right</i></a></li>';
+
+          $("#modalPagination").append(jQuery.parseHTML(html));
+          loadSaleClicks(prodId);
+        });
+      }
+
+      function loadSaleClicks(prodId) {
+        $(".updateSales").on("click", function() {
+          if ($(this).hasClass("disabled")) return;
+          loadSales(prodId, $(this).data("updatedPage"));
+        });
+      }
+
+      function loadPageClicks() {
+        $(".updatePage").on("click", function() {
+          if ($(this).hasClass("disabled")) return;
+          populateList(gCat, $(this).data("updatedPage"));
+        });
+      }
+
+      function productCard(prod) {
+        var html = `
+          <div class="col l3">
+            <div class="card sticky-action grey darken-3 hoverable">
+              <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator tooltipped" style="height:150px;object-fit: cover;" data-position="top" data-tooltip="Click for more info" src="`+ prod["image"] +`">
+              </div>
+              <div class="card-content activator">
+                <p class="activator">`+ prod["name"] +`</p>
+                <p class="activator">`+ prod["price"] +`</p>
+              </div>
+              <div class="card-reveal grey darken-3 overflow my-scrollbar">
+                <div class="row">
+                  <div class="col s10 orange-text text-darken-3">`+ prod["name"] +`</div>
+                  <div class="col s2"><span class="card-title"><i class="material-icons right white-text">close</i></span></div>
+                </div>
+                <p>`+ prod["category"] +`</p>
+                <p>`+ prod["description"] +`</p>
+                <p>`+ prod["price"] +`</p>
+              </div>
+              <div class="card-action">
+                <a class="btn-small round-corners-mid orange darken-3 waves-effect waves-black viewProduct modal-trigger" href="#productViewer" data-product-id=`+ prod["id"] +`><i class="material-icons left ">add_shopping_cart</i>Buy Now</a>
+              </div>
+            </div>
+          </div>
+        `;
+
+        return jQuery.parseHTML(html);
+      }
+
+      function pickRandom() {
+        db.collection("prods").get().then(prods => {
+          var prod = prods[Math.floor(Math.random() * prods.length)];
+
+          $("#randName").text(prod["name"]);
+          $("#randPrice").text(prod["price"]);
+          $("#randImage").attr("src", prod["image"]);
+          $("#randBtn").data("productId", prod["id"]);
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.parallax');
+        var instances = M.Parallax.init(elems);
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems);
+        var elems = document.querySelectorAll('.tooltipped');
+        var instances = M.Tooltip.init(elems);
+        var elems = document.querySelectorAll('.carousel');
+        var instances = M.Carousel.init(elems);
+        var modalElems = document.querySelectorAll('.modal');
+        var modalInstances = M.Modal.init(modalElems);
+        var elems = document.querySelectorAll('.materialboxed');
+        var instances = M.Materialbox.init(elems);
+
+        loadDatabase();
+
+        loadAnims();
+      });
+
+      function loadDatabase() {
+        db.collection('prods').get().then(prods => {
+          if (prods.length == 0) {
+            fetch("products.json").then(res => res.json()).then(data => {
+              for (var i = 0;i < data.length;i++) {
+                if (i != data.length-1) {
+                  db.collection("prods").add({
+                    id: data[i]["id"],
+                    name: data[i]["name"],
+                    price: data[i]["price"],
+                    image: data[i]["image"],
+                    description: data[i]["description"],
+                    category: data[i]["category"]
+                  });
+                } else {
+                  db.collection("prods").add({
+                    id: data[i]["id"],
+                    name: data[i]["name"],
+                    price: data[i]["price"],
+                    image: data[i]["image"],
+                    description: data[i]["description"],
+                    category: data[i]["category"]
+                  }).then(res => {
+                    populateList("all", 1);
+                    pickRandom();
+                  })
+                }
+              }
+            });
+          } else {
+            populateList("all", 1);
+            pickRandom();
+          }
+        });
+      }
+
+      function loadAnims() {
+        setTimeout(function(){
+          document.getElementById("title-parallax").classList.remove("grey");
+          document.getElementById("title-parallax").classList.remove("darken-4");
+          document.getElementById("title-parallax").classList.add("vignette");
+          // document.getElementById("title-parallax").classList.add("add-property");
+        }, 1000);
+
+        setTimeout(function() {
+          $("#title-text").removeClass("opacity-0");
+          $("#subtitle-text").removeClass("opacity-0");
+          setTimeout(function() {
+            $("#title-text").removeClass("transition-medium");
+
+            $("#title-text").each(function(index, element){
+              var animation = TweenMax.to(this, 0.2, {
+                className: '+= superShadow',
+                marginTop: '-10px',
+                marginBottom: '10px',
+                ease: Power1.easeIn,
+                paused:true
+              });
+              element.animation = animation;
+            })
+          }, 1000);
+        }, 1500);
+
+        particlesJS.load('particles-js', 'particles.js-master/particlesjs-config.json');
+      }
+      
+      function doSetTimeout(i, j, text) {
+        setTimeout(function() {
+          document.getElementById("title-text").innerHTML = text.substring(0, i);
+        }, 100 * (i+1-j));
+      }
+
+      $("#title-text").hover(function(){
+        if (this.animation == undefined) return;
+        this.animation.play()
+      }, function(){
+        if (this.animation == undefined) return;
+        this.animation.reverse();
+      })
+    </script>
+  </body>
+</html>
